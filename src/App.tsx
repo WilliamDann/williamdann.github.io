@@ -19,12 +19,6 @@ function Home() {
       <p>I am a <b>Software Engineer</b> and <b>Chess Player</b> located in Seattle.</p>
       <Gap lines={1} />
       <p><a href="https://www.github.com/WilliamDann">GitHub</a> <a href="https://www.github.com/WilliamDann">LinkedIn</a>
-      <span> </span><a>Q</a>
-      <a>W</a>
-      <a>E</a>
-      <a>R</a>
-      <a>T</a>
-      <a>Y</a>
       </p>
       <Gap lines={1} />
 
