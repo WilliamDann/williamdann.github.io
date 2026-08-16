@@ -47,6 +47,7 @@ export default function Ada({ menuOpen }: AdaProps) {
   const [fenInput, setFenInput] = useState('')
   const [copied, setCopied] = useState<string | null>(null)
   const [orientation, setOrientation] = useState<'white' | 'black'>('white')
+  const orientationRef = useRef<'white' | 'black'>('white')
 
   const recordMove = useCallback((pos: Chess, move: ReturnType<typeof parseUci>) => {
     if (!move || !isNormal(move)) return
@@ -99,7 +100,7 @@ export default function Ada({ menuOpen }: AdaProps) {
       lastMove: lastMoveRef.current,
       movable: {
         free: false,
-        color: orientation,
+        color: orientationRef.current,
         dests: buildDests(pos),
         showDests: true,
       },
@@ -113,7 +114,7 @@ export default function Ada({ menuOpen }: AdaProps) {
         setOutcome('Draw')
       }
     }
-  }, [buildDests, orientation])
+  }, [buildDests])
 
   const engineMove = useCallback(async () => {
     const pos = posRef.current
@@ -160,7 +161,7 @@ export default function Ada({ menuOpen }: AdaProps) {
         setStatus('idle')
         cgRef.current?.playPremove()
       }
-    } catch (err) {
+    } catch {
       if (controller.signal.aborted) return
       setStatus('idle')
     }
@@ -208,6 +209,7 @@ export default function Ada({ menuOpen }: AdaProps) {
     setOutcome(null)
     setStatus('idle')
     setFenInput('')
+    orientationRef.current = side
     setOrientation(side)
     syncBoard()
     if (side === 'black') {
