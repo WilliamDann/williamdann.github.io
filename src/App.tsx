@@ -18,7 +18,7 @@ function Home() {
       <Gap lines={1} />
       <p>I am a <b>Software Engineer</b> and <b>Chess Player</b> located in Seattle.</p>
       <Gap lines={1} />
-      <p><a href="https://www.github.com/WilliamDann">GitHub</a> <a href="https://www.github.com/WilliamDann">LinkedIn</a>
+      <p><a href="https://www.github.com/WilliamDann">GitHub</a> <a href="https://linkedin.com/in/fpawn">LinkedIn</a>
       </p>
       <Gap lines={1} />
 
