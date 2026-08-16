@@ -1,0 +1,170 @@
+.ada-page {
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.ada-page .section-inner {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.ada-board-area {
+  width: 480px;
+  flex-shrink: 0;
+}
+
+.ada-board-area .cg-wrap {
+  width: 480px;
+  height: 480px;
+}
+
+.ada-side {
+  flex: 1;
+  min-width: 200px;
+}
+
+.ada-side h1 {
+  margin: 0 0 0.5rem;
+}
+
+.ada-controls {
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ada-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.ada-controls select,
+.ada-controls button {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--line-color-3);
+  background: var(--bg-color);
+  color: var(--text-color);
+  border-radius: 4px;
+  font: inherit;
+}
+
+.ada-controls button {
+  cursor: pointer;
+  align-self: flex-start;
+}
+
+.ada-controls button:hover {
+  background: var(--tab-hover-bg);
+}
+
+.ada-new-game {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ada-new-game button {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--line-color-3);
+  background: var(--bg-color);
+  color: var(--text-color);
+  border-radius: 4px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.ada-new-game button:hover {
+  background: var(--tab-hover-bg);
+}
+
+.ada-status p {
+  margin: 0.25rem 0;
+}
+
+.ada-stats table {
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.ada-stats td {
+  padding: 0.15rem 0.5rem;
+  border-bottom: 1px solid var(--line-color-1);
+}
+
+.ada-stats td:first-child {
+  color: var(--text-color);
+}
+
+.ada-fen-controls {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ada-fen-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.ada-fen-input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--line-color-3);
+  background: var(--bg-color);
+  color: var(--text-color);
+  border-radius: 4px;
+  font: inherit;
+  font-size: 0.85em;
+}
+
+.ada-copy-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.ada-copy-row button {
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--line-color-3);
+  background: var(--bg-color);
+  color: var(--text-color);
+  border-radius: 4px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.ada-copy-row button:hover {
+  background: var(--tab-hover-bg);
+}
+
+.ada-copied {
+  color: var(--line-color-3);
+  font-size: 0.85em;
+}
+
+@media (max-width: 700px) {
+  .ada-page {
+    padding: 1rem;
+  }
+
+  .ada-page .section-inner {
+    flex-direction: column;
+  }
+
+  .ada-board-area,
+  .ada-board-area .cg-wrap {
+    width: 100%;
+    max-width: 480px;
+  }
+
+  .ada-board-area .cg-wrap {
+    height: auto;
+    aspect-ratio: 1;
+  }
+}

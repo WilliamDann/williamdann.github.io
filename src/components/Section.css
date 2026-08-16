@@ -1,0 +1,57 @@
+.section {
+  position: relative;
+
+  width: calc(var(--grid-size) * var(--grid-major) * var(--section-width));
+  height: calc(var(--grid-size) * var(--grid-major) * var(--section-height));
+
+  filter: drop-shadow(2px 8px 6px var(--shadow-color))
+          drop-shadow(0 24px 32px var(--shadow-color));
+}
+
+.section-inner {
+  position: relative;
+
+  width : 100%;
+  height: 100%;
+
+  padding: calc(var(--grid-size) * 1);
+
+  background-color: var(--section-bg);
+
+  -webkit-mask-image: var(--torn-mask);
+          mask-image: var(--torn-mask);
+  -webkit-mask-size: 100% 100%;
+          mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+}
+
+.section-inner::before {
+  content        : "";
+  position       : absolute;
+  inset          : 0;
+  pointer-events : none;
+
+  background-image  : var(--noise-url);
+  background-repeat : repeat;
+  background-size   : 200px 200px;
+
+  opacity         : 0.35;
+  mix-blend-mode  : var(--section-blend);
+}
+
+.section-lined .section-inner {
+  background-image:
+    repeating-linear-gradient(
+      var(--line-color-1) 0 1px,
+      transparent 1px var(--grid-size)
+    );
+}
+
+.section-clear .section-inner {
+  background-color: transparent;
+}
+
+.section-clear .section-inner::before {
+  display: none;
+}

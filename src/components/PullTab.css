@@ -1,0 +1,54 @@
+.menu-tab {
+  position: absolute;
+  top: var(--grid-size);
+  right: -24px;
+  width: 24px;
+  height: 48px;
+  background-color: var(--bg-color);
+  border: none;
+  border-left: 3px solid var(--line-color-3);
+  border-radius: 0 8px 8px 0;
+  padding: 0 6px;
+  box-shadow: 2px 2px 6px var(--shadow-color);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.menu-tab::before {
+  content       : "";
+  position      : absolute;
+  inset         : 0 0 0 -3px;
+  pointer-events: none;
+
+  background-image   : var(--noise-url);
+  background-repeat  : repeat;
+  border-radius      : 0 8px 8px 0;
+
+  opacity         : 1.0;
+  mix-blend-mode  : overlay;
+  z-index         : 1;
+}
+
+.menu-tab:hover {
+  background-color: var(--tab-hover-bg);
+  box-shadow: 0 0 14px var(--tab-hover-glow), 2px 2px 6px var(--shadow-color);
+}
+
+.chevron {
+  position: relative;
+  z-index: 2;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid var(--text-color);
+  border-bottom: 2px solid var(--text-color);
+  transform: rotate(-45deg);
+  transition: transform 0.3s ease;
+}
+
+.menu-tab.open .chevron {
+  transform: rotate(135deg);
+}

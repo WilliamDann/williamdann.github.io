@@ -1,0 +1,125 @@
+:root {
+  --keycap-bg-top        : #ededeb;
+  --keycap-bg-bottom     : #d6d6d3;
+  --keycap-face-left     : #f6f6f4;
+  --keycap-face-right    : #d8d8d5;
+  --keycap-face-left-hv  : #ffffff;
+  --keycap-face-right-hv : #e2e2df;
+  --keycap-text          : var(--text-color);
+  --keycap-edge-soft     : #0002;
+  --keycap-edge-hard     : #0004;
+  --keycap-shadow-10     : rgba(0, 0, 0, 0.08);
+  --keycap-shadow-15     : rgba(0, 0, 0, 0.10);
+  --keycap-shadow-25     : rgba(0, 0, 0, 0.12);
+  --keycap-shadow-30     : rgba(0, 0, 0, 0.16);
+  --keycap-shadow-40     : rgba(0, 0, 0, 0.18);
+  --keycap-shadow-50     : rgba(0, 0, 0, 0.22);
+  --keycap-shadow-75     : rgba(0, 0, 0, 0.30);
+  --keycap-light-15      : rgba(255, 255, 255, 0.55);
+  --keycap-light-25      : rgba(255, 255, 255, 0.80);
+}
+
+[data-theme="dark"] {
+  --keycap-bg-top        : #282828;
+  --keycap-bg-bottom     : #202020;
+  --keycap-face-left     : #232323;
+  --keycap-face-right    : #4a4a4a;
+  --keycap-face-left-hv  : #2a2a2a;
+  --keycap-face-right-hv : #545454;
+  --keycap-text          : #e9e9e9;
+  --keycap-edge-soft     : #0004;
+  --keycap-edge-hard     : #0009;
+  --keycap-shadow-10     : rgba(0, 0, 0, 0.10);
+  --keycap-shadow-15     : rgba(0, 0, 0, 0.15);
+  --keycap-shadow-25     : rgba(0, 0, 0, 0.25);
+  --keycap-shadow-30     : rgba(0, 0, 0, 0.30);
+  --keycap-shadow-40     : rgba(0, 0, 0, 0.40);
+  --keycap-shadow-50     : rgba(0, 0, 0, 0.50);
+  --keycap-shadow-75     : rgba(0, 0, 0, 0.75);
+  --keycap-light-15      : rgba(255, 255, 255, 0.15);
+  --keycap-light-25      : rgba(255, 255, 255, 0.25);
+}
+
+button:not(.menu-tab),
+a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  min-height: 36px;
+  padding: 9px 18px 20px 10px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(180deg, var(--keycap-bg-top), var(--keycap-bg-bottom));
+  box-shadow:
+    inset -8px 0 8px var(--keycap-shadow-15),
+    inset 0 -8px 8px var(--keycap-shadow-25),
+    0 0 0 2px var(--keycap-shadow-75),
+    10px 20px 25px var(--keycap-shadow-40);
+  overflow: hidden;
+  transition:
+    transform 0.1s ease-in-out,
+    box-shadow 0.1s ease-in;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  isolation: isolate;
+
+  color         : var(--keycap-text);
+  font-weight   : 600;
+  line-height   : 1;
+  text-decoration: none;
+  cursor        : pointer;
+}
+
+button:not(.menu-tab)::before,
+a::before {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  bottom: 14px;
+  right: 12px;
+  background: linear-gradient(90deg, var(--keycap-face-left), var(--keycap-face-right));
+  border-radius: 10px;
+  box-shadow:
+    -10px -10px 10px var(--keycap-light-25),
+    10px 5px 10px var(--keycap-shadow-15);
+  border-left: 1px solid var(--keycap-edge-soft);
+  border-bottom: 1px solid var(--keycap-edge-soft);
+  border-top: 1px solid var(--keycap-edge-hard);
+  transition: all 0.1s ease-in-out;
+  pointer-events: none;
+  z-index: -1;
+}
+
+button:not(.menu-tab):hover,
+a:hover {
+  transform: translateY(-1px);
+}
+
+button:not(.menu-tab):hover::before,
+a:hover::before {
+  background: linear-gradient(90deg, var(--keycap-face-left-hv), var(--keycap-face-right-hv));
+}
+
+button:not(.menu-tab):active,
+a:active {
+  transform: translateY(2px);
+  box-shadow:
+    inset -4px 0 4px var(--keycap-shadow-10),
+    inset 0 -4px 4px var(--keycap-shadow-15),
+    0 0 0 2px var(--keycap-shadow-50),
+    5px 10px 15px var(--keycap-shadow-30);
+}
+
+button:not(.menu-tab):active::before,
+a:active::before {
+  top: 5px;
+  left: 5px;
+  bottom: 11px;
+  right: 11px;
+  box-shadow:
+    -5px -5px 5px var(--keycap-light-15),
+    5px 3px 5px var(--keycap-shadow-10);
+}

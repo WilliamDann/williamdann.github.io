@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+:root {
+  --grid-size   : 5mm;
+  --grid-major  : 8;
+  --grid-offset : 5;
+  --margin-size : calc((var(--grid-size) * var(--grid-major)) - 1px);
+  --menu-width  : 240px;
+  --noise-url   : url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncR type='table' tableValues='-0.15 1.15'/><feFuncG type='table' tableValues='-0.15 1.15'/><feFuncB type='table' tableValues='-0.15 1.15'/></feComponentTransfer></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+*, *::before, *::after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-size: calc(var(--grid-size) - 2pt);
+  font-variation-settings:
+    "wdth" 100;
+}
+
+body, #root {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.graph-paper {
+  position: relative;
+
+  width  : 100%;
+  height : 100%;
+
+  transition        : transform 0.3s ease;
+
+  padding-top       : calc(var(--grid-size));
+  padding-left      : calc((var(--grid-size) * var(--grid-offset)) + 5px);
+
+  color             : var(--text-color);
+  line-height       : var(--grid-size);
+  background-color  : var(--bg-color);
+  background-image  : linear-gradient(var(--line-color-1) 2.5px, transparent 2.5px),
+                      linear-gradient(90deg, var(--line-color-1) 2.5px, transparent 2.5px),
+                      linear-gradient(var(--line-color-2) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--line-color-2) 1px, transparent 1px);
+
+  background-position : calc(var(--grid-size) * var(--grid-offset) - 2.5px) calc(var(--grid-size) * var(--grid-offset) - 2.5px),
+                        calc(var(--grid-size) * var(--grid-offset) - 2.5px) calc(var(--grid-size) * var(--grid-offset) - 2.5px),
+                        calc(var(--grid-size) * var(--grid-offset) - 1px) calc(var(--grid-size) * var(--grid-offset) - 1px),
+                        calc(var(--grid-size) * var(--grid-offset) - 1px) calc(var(--grid-size) * var(--grid-offset) - 1px);
+  background-size     : calc(var(--grid-size) * var(--grid-major)) calc(var(--grid-size) * var(--grid-major)),
+                        calc(var(--grid-size) * var(--grid-major)) calc(var(--grid-size) * var(--grid-major)),
+                        var(--grid-size) var(--grid-size),
+                        var(--grid-size) var(--grid-size);
+}
+
+.graph-paper.menu-open {
+  transform: translateX(calc(var(--menu-width) - var(--grid-size)));
+}
+
+.graph-paper h1 {
+  font-size: calc(var(--grid-size) * 3);
+  line-height: calc(var(--grid-size) * 3);
+  font-weight: bold;
+  color: var(--heading-color);
+}
+
+.graph-paper h2 {
+  font-size: calc(var(--grid-size) * 2);
+  line-height: calc(var(--grid-size) * 2);
+  color: var(--subhead-color);
+  font-weight: normal;
+}
+
+.graph-paper::before {
+  content       : "";
+  position      : absolute;
+  inset         : 0;
+  pointer-events: none;
+
+  background-image: var(--noise-url);
+  background-repeat: repeat;
+
+  opacity         : 0.7;
+  mix-blend-mode  : overlay;
+}

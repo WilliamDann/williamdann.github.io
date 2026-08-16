@@ -1,0 +1,7 @@
+{
+  "plugins": ["./stylelint-plugins/no-literal-colors.mjs"],
+  "rules": {
+    "pf/no-literal-colors": true,
+    "color-named": "never"
+  }
+}
