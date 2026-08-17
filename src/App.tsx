@@ -8,9 +8,9 @@ import './App.css'
 
 type Theme = 'light' | 'dark'
 
-function Home() {
+function Home({ menuOpen }: { menuOpen: boolean }) {
   return (
-    <div className="graph-paper">
+    <div className={`graph-paper${menuOpen ? ' menu-open' : ''}`}>
       <h1>William Dann</h1>
       <Gap lines={1} />
 
@@ -57,7 +57,7 @@ function App() {
         <a href="https://www.github.com/WilliamDann">GitHub</a>
       </SideMenu>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home menuOpen={menuOpen} />} />
         <Route path="/ada" element={<Ada menuOpen={menuOpen} />} />
       </Routes>
     </>
