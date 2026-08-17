@@ -18,16 +18,21 @@ function Home({ menuOpen }: { menuOpen: boolean }) {
       <Gap lines={1} />
       <p>I am a <b>Software Engineer</b> and <b>Chess Player</b> located in Seattle.</p>
       <Gap lines={1} />
-      <p><a href="https://www.github.com/WilliamDann">GitHub</a> <a href="https://linkedin.com/in/fpawn">LinkedIn</a>
-      </p>
+      <div className="keycap-row">
+        <a href="https://www.github.com/WilliamDann">GitHub</a>
+        <a href="https://linkedin.com/in/fpawn">LinkedIn</a>
+      </div>
       <Gap lines={1} />
 
       <h2>Featured</h2>
       <Gap lines={1} />
 
       <h3>Chess Engine</h3>
-      <p>I wrote a chess engine in go, it's pretty good! Play it here:</p><br />
-      <Link to="/ada">Play Ada</Link>
+      <p>I wrote a chess engine in go, it's pretty good! Play it here:</p>
+      <Gap lines={1} />
+      <div className="keycap-row">
+        <Link to="/ada">Play Ada</Link>
+      </div>
 
     </div>
   )

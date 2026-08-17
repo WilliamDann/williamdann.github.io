@@ -59,6 +59,12 @@ body, #root {
                         var(--grid-size) var(--grid-size);
 }
 
+.keycap-row {
+  display: flex;
+  gap: 10px;
+  height: calc(var(--grid-size) * 2);
+}
+
 .graph-paper.menu-open {
   transform: translateX(calc(var(--menu-width) - var(--grid-size)));
 }

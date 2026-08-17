@@ -42,43 +42,19 @@
   gap: 0.25rem;
 }
 
-.ada-controls select,
-.ada-controls button {
+.ada-controls select {
   padding: 0.4rem 0.6rem;
   border: 1px solid var(--line-color-3);
   background: var(--bg-color);
   color: var(--text-color);
   border-radius: 4px;
   font: inherit;
-}
-
-.ada-controls button {
-  cursor: pointer;
-  align-self: flex-start;
-}
-
-.ada-controls button:hover {
-  background: var(--tab-hover-bg);
 }
 
 .ada-new-game {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-}
-
-.ada-new-game button {
-  padding: 0.4rem 0.6rem;
-  border: 1px solid var(--line-color-3);
-  background: var(--bg-color);
-  color: var(--text-color);
-  border-radius: 4px;
-  font: inherit;
-  cursor: pointer;
-}
-
-.ada-new-game button:hover {
-  background: var(--tab-hover-bg);
 }
 
 .ada-status p {
@@ -127,20 +103,6 @@
   display: flex;
   gap: 0.5rem;
   align-items: center;
-}
-
-.ada-copy-row button {
-  padding: 0.4rem 0.6rem;
-  border: 1px solid var(--line-color-3);
-  background: var(--bg-color);
-  color: var(--text-color);
-  border-radius: 4px;
-  font: inherit;
-  cursor: pointer;
-}
-
-.ada-copy-row button:hover {
-  background: var(--tab-hover-bg);
 }
 
 .ada-copied {
