@@ -236,7 +236,10 @@ export default function Ada({ menuOpen }: AdaProps) {
     setOutcome(null)
     setStatus('idle')
     syncBoard()
-  }, [fenInput, syncBoard, orientation, setPlayerHeaders])
+    if (pos.value.turn !== orientation) {
+      engineMove()
+    }
+  }, [fenInput, syncBoard, orientation, setPlayerHeaders, engineMove])
 
   const copyToClipboard = useCallback(async (text: string, label: string) => {
     try {
