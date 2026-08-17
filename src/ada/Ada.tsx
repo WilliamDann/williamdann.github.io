@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { Chessground } from 'chessground'
-import { Chess, fen, parseUci, parseSquare, makeSquare, isNormal, type Square } from 'chessops'
+import { Chess, fen, parseUci, parseSquare, makeSquare, squareFile, isNormal, type Square } from 'chessops'
 import { makeSanAndPlay } from 'chessops/san'
 import { defaultGame, makePgn, type PgnNodeData, type Game, ChildNode, Node } from 'chessops/pgn'
 import type { Key, Dests } from 'chessground/types'
@@ -68,8 +68,10 @@ export default function Ada({ menuOpen }: AdaProps) {
       for (const to of targets) {
         // chessops returns the rook's square as the castling destination
         // (Chess960 style). Convert to the king's actual target square so
-        // chessground lets the user drag the king two squares.
-        if (piece?.role === 'king') {
+        // chessground lets the user drag the king two squares. Only apply
+        // to actual castling moves (king traveling more than one file);
+        // a normal one-square king move to a corner must stay as-is.
+        if (piece?.role === 'king' && Math.abs(squareFile(to as Square) - squareFile(from as Square)) > 1) {
           const toKey = makeSquare(to as Square)
           if (toKey === 'h1') { tos.push('g1' as Key); continue }
           if (toKey === 'a1') { tos.push('c1' as Key); continue }
