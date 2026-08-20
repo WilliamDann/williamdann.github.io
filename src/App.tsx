@@ -24,6 +24,22 @@ function Home({ menuOpen }: { menuOpen: boolean }) {
       </div>
       <Gap lines={1} />
 
+      <h3>Favorite Books: </h3>
+      <Gap lines={1} />
+      <p>Mars Trilogy, Kim Stanley Robinson</p>
+      <p>Enderverse Series, Orson Scott Card</p>
+      <p>Foundation Series, Isaac Asimov</p>
+      <p>LOTR Audiobooks read by Andy Serkis, Tolkien</p>
+      <Gap lines={1} />
+      <b>Currently Reading: </b><span>Xenocide, Orson Scott Card</span>
+      <Gap lines={1} />
+      <h3>Favorite Games: </h3>
+      <Gap lines={1} />
+      <p>Factorio</p>
+      <p>Nuclear Option</p>
+      <p>Halo: Reach Firefight</p>
+
+      <Gap lines={2} />
       <h2>Featured</h2>
       <Gap lines={1} />
 
