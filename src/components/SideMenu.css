@@ -30,6 +30,18 @@
   width: var(--menu-width);
 }
 
+@media (max-width: 700px) {
+  .menu {
+    width: 0;
+    border-right-width: 0;
+  }
+
+  .menu.open {
+    width: var(--menu-width);
+    border-right-width: 3px;
+  }
+}
+
 .menu-content {
   position: relative;
   z-index: 2;

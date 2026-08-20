@@ -96,3 +96,10 @@ body, #root {
   opacity         : 0.7;
   mix-blend-mode  : overlay;
 }
+
+@media (max-width: 700px) {
+  .graph-paper,
+  .graph-paper.menu-open {
+    padding-left: calc(var(--grid-size) * 2);
+  }
+}
