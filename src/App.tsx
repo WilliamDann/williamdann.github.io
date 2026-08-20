@@ -22,10 +22,9 @@ function Home({ menuOpen }: { menuOpen: boolean }) {
         <a href="https://www.github.com/WilliamDann">GitHub</a>
         <a href="https://linkedin.com/in/fpawn">LinkedIn</a>
       </div>
-      <Gap lines={1} />
+      <Gap lines={2} />
 
       <h3>Favorite Books: </h3>
-      <Gap lines={1} />
       <p>Mars Trilogy, Kim Stanley Robinson</p>
       <p>Enderverse Series, Orson Scott Card</p>
       <p>Foundation Series, Isaac Asimov</p>
@@ -34,8 +33,8 @@ function Home({ menuOpen }: { menuOpen: boolean }) {
       <b>Currently Reading: </b><span>Xenocide, Orson Scott Card</span>
       <Gap lines={1} />
       <h3>Favorite Games: </h3>
-      <Gap lines={1} />
       <p>Factorio</p>
+      <p>Dwarf Fortress</p>
       <p>Nuclear Option</p>
       <p>Halo: Reach Firefight</p>
 
