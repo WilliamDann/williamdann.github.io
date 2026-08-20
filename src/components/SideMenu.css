@@ -40,6 +40,10 @@
     width: var(--menu-width);
     border-right-width: 3px;
   }
+
+  .menu:not(.open) .menu-footer {
+    display: none;
+  }
 }
 
 .menu-content {

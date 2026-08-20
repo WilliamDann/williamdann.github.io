@@ -101,5 +101,10 @@ body, #root {
   .graph-paper,
   .graph-paper.menu-open {
     padding-left: calc(var(--grid-size) * 2);
+
+    background-position : calc(var(--grid-size) * var(--grid-offset) - 2.5px) calc(var(--grid-size) * var(--grid-offset) - 2.5px),
+                          calc(var(--grid-size) * 2 - 2.5px) calc(var(--grid-size) * var(--grid-offset) - 2.5px),
+                          calc(var(--grid-size) * var(--grid-offset) - 1px) calc(var(--grid-size) * var(--grid-offset) - 1px),
+                          calc(var(--grid-size) * 2 - 1px) calc(var(--grid-size) * var(--grid-offset) - 1px);
   }
 }
