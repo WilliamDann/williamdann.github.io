@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from 'react'
+import { useEffect, useRef, useState, useCallback, useMemo } from 'react'
 import { Chessground } from 'chessground'
 import { Chess, fen, parseUci, parseSquare, makeSquare, squareFile, isNormal, type Square } from 'chessops'
 import { makeSanAndPlay } from 'chessops/san'
@@ -42,6 +42,7 @@ export default function Ada({ menuOpen }: AdaProps) {
 
   const [status, setStatus] = useState<Status>('idle')
   const [stats, setStats] = useState<EngineStats | null>(null)
+  const [evalHistory, setEvalHistory] = useState<number[]>([])
   const [outcome, setOutcome] = useState<string | null>(null)
   const [movetime, setMovetime] = useState(DEFAULT_MOVETIME)
   const [fenInput, setFenInput] = useState('')
@@ -153,6 +154,7 @@ export default function Ada({ menuOpen }: AdaProps) {
       pos.play(reply)
       lastMoveRef.current = [makeSquare(reply.from) as Key, makeSquare(reply.to) as Key]
       setStats({ depth: data.depth, nodes: data.nodes, score: data.score })
+      setEvalHistory(h => [...h, data.score])
       syncBoard()
 
       const o = pos.outcome()
@@ -208,6 +210,7 @@ export default function Ada({ menuOpen }: AdaProps) {
     pgnEndRef.current = pgnRef.current.moves
     lastMoveRef.current = undefined
     setStats(null)
+    setEvalHistory([])
     setOutcome(null)
     setStatus('idle')
     setFenInput('')
@@ -233,6 +236,7 @@ export default function Ada({ menuOpen }: AdaProps) {
     pgnEndRef.current = pgnRef.current.moves
     lastMoveRef.current = undefined
     setStats(null)
+    setEvalHistory([])
     setOutcome(null)
     setStatus('idle')
     syncBoard()
@@ -325,6 +329,8 @@ export default function Ada({ menuOpen }: AdaProps) {
             </div>
           )}
 
+          {evalHistory.length > 0 && <EvalChart scores={evalHistory} />}
+
           <div className="ada-fen-controls">
             <div className="ada-fen-row">
               <input
@@ -348,6 +354,69 @@ export default function Ada({ menuOpen }: AdaProps) {
           </div>
         </div>
       </Section>
+    </div>
+  )
+}
+
+const CHART_W = 320
+const CHART_H = 140
+const PAD_X = 12
+const PAD_TOP = 16
+const PAD_BOTTOM = 20
+const PLOT_W = CHART_W - PAD_X * 2
+const PLOT_H = CHART_H - PAD_TOP - PAD_BOTTOM
+const MID_Y = PAD_TOP + PLOT_H / 2
+const RANGE_MIN = 200
+const RANGE_MAX = 1500
+
+const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v))
+
+function EvalChart({ scores }: { scores: number[] }) {
+  const { points, linePath, areaPath, range } = useMemo(() => {
+    const n = scores.length
+    const maxAbs = Math.max(RANGE_MIN, ...scores.map(s => Math.abs(s)))
+    const r = Math.min(RANGE_MAX, maxAbs)
+    const x = (i: number) => (n === 1 ? PAD_X + PLOT_W / 2 : PAD_X + (i / (n - 1)) * PLOT_W)
+    const y = (s: number) => MID_Y - (clamp(s, -r, r) / r) * (PLOT_H / 2)
+    const pts = scores.map((s, i) => ({ x: x(i), y: y(s), score: s }))
+    const line = pts.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x.toFixed(1)} ${p.y.toFixed(1)}`).join(' ')
+    const first = pts[0]
+    const lastPt = pts[pts.length - 1]
+    const area = `${line} L${lastPt.x.toFixed(1)} ${MID_Y.toFixed(1)} L${first.x.toFixed(1)} ${MID_Y.toFixed(1)} Z`
+    return {
+      points: pts,
+      linePath: line,
+      areaPath: area,
+      range: r,
+    }
+  }, [scores])
+
+  const last = points[points.length - 1]
+  const lastLabel = (last.score / 100).toFixed(2)
+  const isWinning = last.score >= 0
+
+  return (
+    <div className="ada-eval-chart">
+      <div className="ada-eval-header">
+        <span className="ada-eval-title">Eval (Ada)</span>
+        <span className={`ada-eval-now${isWinning ? ' pos' : ' neg'}`}>
+          {isWinning ? '+' : ''}{lastLabel}
+        </span>
+      </div>
+      <p className="ada-eval-note">Ada's own assessment, not an objective eval.</p>
+      <svg viewBox={`0 0 ${CHART_W} ${CHART_H}`} role="img" aria-label="Engine evaluation over Ada's moves">
+        <line
+          x1={PAD_X} x2={CHART_W - PAD_X} y1={MID_Y} y2={MID_Y}
+          className="ada-eval-zero"
+        />
+        <path d={areaPath} className="ada-eval-area" />
+        <path d={linePath} className="ada-eval-line" />
+        {points.map((p, i) => (
+          <circle key={i} cx={p.x} cy={p.y} r={2.4} className="ada-eval-dot" />
+        ))}
+        <text x={PAD_X} y={PAD_TOP - 4} className="ada-eval-axis">+{(range / 100).toFixed(1)}</text>
+        <text x={PAD_X} y={CHART_H - PAD_BOTTOM + 14} className="ada-eval-axis">-{(range / 100).toFixed(1)}</text>
+      </svg>
     </div>
   )
 }

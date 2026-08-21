@@ -25,6 +25,9 @@
 
   --tab-hover-bg  : color-mix(in srgb, var(--line-color-3) 12%, transparent);
   --tab-hover-glow: color-mix(in srgb, var(--line-color-3) 35%, transparent);
+
+  --eval-pos: #16a34a;
+  --eval-neg: #dc2626;
 }
 
 [data-theme="dark"] {
@@ -51,4 +54,7 @@
   --paper-white  : #232328;
   --paper-gray   : #222226;
   --paper-black  : #18181b;
+
+  --eval-pos: #4ade80;
+  --eval-neg: #f87171;
 }

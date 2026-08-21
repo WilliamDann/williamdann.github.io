@@ -75,6 +75,76 @@
   color: var(--text-color);
 }
 
+.ada-eval-chart {
+  margin-top: 1.25rem;
+}
+
+.ada-eval-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+}
+
+.ada-eval-title {
+  font-size: 0.9em;
+  color: var(--subhead-color);
+  font-weight: 600;
+}
+
+.ada-eval-note {
+  margin: 0 0 0.4rem;
+  font-size: 0.75em;
+  color: var(--text-color);
+  opacity: 0.7;
+}
+
+.ada-eval-now {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  font-size: 0.95em;
+}
+
+.ada-eval-now.pos { color: var(--eval-pos); }
+.ada-eval-now.neg { color: var(--eval-neg); }
+
+.ada-eval-chart svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.ada-eval-zero {
+  stroke: var(--line-color-1);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.ada-eval-area {
+  fill: var(--line-color-3);
+  fill-opacity: 0.14;
+  stroke: none;
+}
+
+.ada-eval-line {
+  fill: none;
+  stroke: var(--line-color-3);
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.ada-eval-dot {
+  fill: var(--line-color-3);
+}
+
+.ada-eval-axis {
+  fill: var(--text-color);
+  font-size: 8px;
+  opacity: 0.7;
+}
+
 .ada-fen-controls {
   margin-top: 1.5rem;
   display: flex;
@@ -115,8 +185,13 @@
     padding: 1rem;
   }
 
+  .ada-page .section {
+    height: auto;
+  }
+
   .ada-page .section-inner {
     flex-direction: column;
+    height: auto;
   }
 
   .ada-board-area,
